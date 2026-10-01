@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Developer Intern",
+    "company": "TechCorp Solutions",
+    "description": "Join our frontend team to build responsive web applications using React and modern JavaScript. Great learning opportunity for students.",
+    "skills": "HTML, CSS, JavaScript, React",
+    "location": "Remote",
+    "salary": "25000"
+  },
+  {
+    "id": 2,
+    "title": "Python Backend Intern",
+    "company": "DataSoft Labs",
+    "description": "Work on backend APIs using Python Flask and Django. You will learn database design, REST APIs, and server-side logic.",
+    "skills": "Python, Flask, Django, SQL",
+    "location": "Bangalore",
+    "salary": "30000"
+  },
+  {
+    "id": 3,
+    "title": "Data Analyst Intern",
+    "company": "Insight Analytics",
+    "description": "Analyze datasets, create visualizations, and present findings to stakeholders. Tools include Python, Pandas, and Tableau.",
+    "skills": "Python, Pandas, SQL, Tableau",
+    "location": "Mumbai",
+    "salary": "20000"
+  },
+  {
+    "id": 4,
+    "title": "Mobile App Developer Intern",
+    "company": "AppWorks Technologies",
+    "description": "Build cross-platform mobile apps using Flutter and Dart. Work closely with designers and backend engineers.",
+    "skills": "Flutter, Dart, Firebase, REST API",
+    "location": "Remote",
+    "salary": "22000"
+  },
+  {
+    "id": 5,
+    "title": "UI/UX Design Intern",
+    "company": "Creative Studio",
+    "description": "Design user-friendly interfaces and prototypes using Figma. Collaborate with developers to bring designs to life.",
+    "skills": "Figma, Adobe XD, HTML, CSS",
+    "location": "Delhi",
+    "salary": "18000"
+  },
+  {
+    "id": 6,
+    "title": "Cloud DevOps Intern",
+    "company": "CloudNet Systems",
+    "description": "Learn AWS, Docker, and CI/CD pipelines. Help automate deployments and manage cloud infrastructure.",
+    "skills": "AWS, Docker, Linux, Python",
+    "location": "Hyderabad",
+    "salary": "35000"
+  }
+]

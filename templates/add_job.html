@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Job Portal - Add Job</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar admin-navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('admin') }}" class="nav-logo">Admin Dashboard</a>
+            <div class="nav-links">
+                <a href="{{ url_for('admin') }}">Overview</a>
+                <a href="{{ url_for('add_job') }}" class="btn-nav-primary">Add Job</a>
+                <a href="{{ url_for('admin_logout') }}" class="btn-nav-logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="form-page">
+        <div class="form-card">
+            <h1>Add New Job</h1>
+            <p class="form-subtitle">Fill in the details below to post a new job listing.</p>
+            <form method="POST" action="{{ url_for('add_job') }}">
+                <div class="form-group">
+                    <label for="title">Job Title *</label>
+                    <input type="text" id="title" name="title" placeholder="e.g. Software Engineer Intern" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company *</label>
+                    <input type="text" id="company" name="company" placeholder="e.g. TechCorp Solutions" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Job Description</label>
+                    <textarea id="description" name="description" rows="4" placeholder="Describe the job role and responsibilities..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Required Skills</label>
+                    <input type="text" id="skills" name="skills" placeholder="e.g. Python, Flask, SQL, JavaScript">
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" placeholder="e.g. Bangalore or Remote">
+                </div>
+                <div class="form-group">
+                    <label for="salary">Salary (per month)</label>
+                    <input type="text" id="salary" name="salary" placeholder="e.g. 25000">
+                </div>
+                <button type="submit" class="btn-primary btn-full">Post Job</button>
+            </form>
+            <p class="form-footer"><a href="{{ url_for('admin') }}">&larr; Back to Dashboard</a></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Student Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

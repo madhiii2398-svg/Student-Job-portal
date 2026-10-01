@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Job Portal - Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar admin-navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('admin') }}" class="nav-logo">Admin Dashboard</a>
+            <div class="nav-links">
+                <a href="{{ url_for('admin') }}">Overview</a>
+                <a href="{{ url_for('add_job') }}" class="btn-nav-primary">Add Job</a>
+                <a href="{{ url_for('admin_logout') }}" class="btn-nav-logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Admin Dashboard</h1>
+            <p>Manage jobs, applications, and view statistics.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2>{{ total_jobs }}</h2>
+                <p>Total Jobs</p>
+            </div>
+            <div class="stat-card">
+                <h2>{{ total_applications }}</h2>
+                <p>Applications</p>
+            </div>
+            <div class="stat-card">
+                <h2>{{ total_students }}</h2>
+                <p>Registered Students</p>
+            </div>
+            <div class="stat-card">
+                <h2>{{ status_counts.get('Selected', 0) }}</h2>
+                <p>Selected</p>
+            </div>
+        </div>
+
+        <div class="admin-actions-bar">
+            <a href="{{ url_for('add_job') }}" class="btn-primary">+ Add New Job</a>
+        </div>
+
+        <div class="section-header">
+            <h2>All Applications</h2>
+        </div>
+
+        {% if applications %}
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Current Status</th>
+                            <th>Update Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in applications %}
+                            <tr>
+                                <td>{{ app.id }}</td>
+                                <td>{{ app.student_name }}</td>
+                                <td>{{ app.job_title }}</td>
+                                <td>{{ app.company }}</td>
+                                <td>
+                                    <span class="status-badge status-{{ app.status|lower }}">{{ app.status }}</span>
+                                </td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('update_status', application_id=app.id) }}" class="status-form">
+                                        <select name="status" onchange="this.form.submit()">
+                                            <option value="Applied" {% if app.status == 'Applied' %}selected{% endif %}>Applied</option>
+                                            <option value="Shortlisted" {% if app.status == 'Shortlisted' %}selected{% endif %}>Shortlisted</option>
+                                            <option value="Selected" {% if app.status == 'Selected' %}selected{% endif %}>Selected</option>
+                                            <option value="Rejected" {% if app.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                        </select>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h3>No applications yet</h3>
+                <p>No students have applied for jobs yet.</p>
+            </div>
+        {% endif %}
+
+        <div class="section-header">
+            <h2>Posted Jobs</h2>
+        </div>
+
+        {% if jobs %}
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Company</th>
+                            <th>Location</th>
+                            <th>Salary</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in jobs %}
+                            <tr>
+                                <td>{{ job.id }}</td>
+                                <td>{{ job.title }}</td>
+                                <td>{{ job.company }}</td>
+                                <td>{{ job.location or '-' }}</td>
+                                <td>{{ job.salary or '-' }}</td>
+                                <td>
+                                    <a href="{{ url_for('delete_job', job_id=job.id) }}" class="btn-danger-sm" onclick="return confirm('Are you sure you want to delete this job?')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h3>No jobs posted</h3>
+                <p>No jobs have been posted yet. <a href="{{ url_for('add_job') }}">Add a job</a> to get started.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Student Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

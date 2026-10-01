@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Job Portal - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="nav-logo">Student Job Portal</a>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('jobs') }}">Jobs</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="btn-nav-logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>My Dashboard</h1>
+            <p>Welcome, {{ session.get('student_name', 'Student') }}! Here are your applications.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2>{{ total_applications }}</h2>
+                <p>Total Applications</p>
+            </div>
+            <div class="stat-card">
+                <h2>{{ status_counts.get('Applied', 0) }}</h2>
+                <p>Applied</p>
+            </div>
+            <div class="stat-card">
+                <h2>{{ status_counts.get('Shortlisted', 0) }}</h2>
+                <p>Shortlisted</p>
+            </div>
+            <div class="stat-card">
+                <h2>{{ status_counts.get('Selected', 0) }}</h2>
+                <p>Selected</p>
+            </div>
+        </div>
+
+        <div class="section-header">
+            <h2>Your Applications</h2>
+            <a href="{{ url_for('jobs') }}" class="link-primary">Browse More Jobs &rarr;</a>
+        </div>
+
+        {% if applications %}
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for app in applications %}
+                            <tr>
+                                <td>{{ app.job_title }}</td>
+                                <td>{{ app.company }}</td>
+                                <td>
+                                    <span class="status-badge status-{{ app.status|lower }}">{{ app.status }}</span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <h3>No applications yet</h3>
+                <p>You haven't applied for any jobs yet. <a href="{{ url_for('jobs') }}">Browse jobs</a> to get started!</p>
+            </div>
+        {% endif %}
+
+        {% if student %}
+        <div class="profile-section">
+            <h2>Your Profile</h2>
+            <div class="profile-card">
+                <p><strong>Name:</strong> {{ student.name }}</p>
+                <p><strong>Email:</strong> {{ student.email }}</p>
+                <p><strong>Qualification:</strong> {{ student.qualification or 'Not specified' }}</p>
+                <p><strong>Skills:</strong> {{ student.skills or 'Not specified' }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Student Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Job Portal - Jobs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('index') }}" class="nav-logo">Student Job Portal</a>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('jobs') }}">Jobs</a>
+                {% if session.get('student_id') %}
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                    <a href="{{ url_for('logout') }}" class="btn-nav-logout">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn-nav-primary">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="page-container">
+        <div class="page-header">
+            <h1>Available Jobs</h1>
+            <p>Browse and apply for jobs that match your skills.</p>
+        </div>
+
+        <div class="search-bar">
+            <form method="GET" action="{{ url_for('jobs') }}">
+                <input type="text" name="q" value="{{ query }}" placeholder="Search by title, company, or skills...">
+                <button type="submit" class="btn-primary">Search</button>
+                {% if query %}
+                    <a href="{{ url_for('jobs') }}" class="btn-secondary">Clear</a>
+                {% endif %}
+            </form>
+        </div>
+
+        <div class="job-list">
+            {% if jobs %}
+                {% for job in jobs %}
+                    <div class="job-card-list">
+                        <div class="job-card-main">
+                            <div class="job-card-title-row">
+                                <h3>{{ job.title }}</h3>
+                                <span class="company-name">{{ job.company }}</span>
+                            </div>
+                            <p class="job-description">{{ job.description }}</p>
+                            {% if job.skills %}
+                                <div class="job-tags">
+                                    {% for skill in job.skills.split(',') %}
+                                        <span class="tag">{{ skill.strip() }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <div class="job-meta">
+                                {% if job.location %}<span class="meta-item">Location: {{ job.location }}</span>{% endif %}
+                                {% if job.salary %}<span class="meta-item">Salary: &#8377;{{ job.salary }}/mo</span>{% endif %}
+                            </div>
+                        </div>
+                        <div class="job-card-actions">
+                            {% if session.get('student_id') %}
+                                <a href="{{ url_for('apply_job', job_id=job.id) }}" class="btn-primary">Apply Now</a>
+                            {% else %}
+                                <a href="{{ url_for('login') }}" class="btn-primary">Login to Apply</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <h3>No jobs found</h3>
+                    <p>{% if query %}No jobs match your search. Try a different keyword.{% else %}No jobs are available right now. Check back soon!{% endif %}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Student Job Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>

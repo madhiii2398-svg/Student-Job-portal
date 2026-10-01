@@ -1,0 +1,910 @@
+/* ==========================================================================
+   Student Job Portal - Stylesheet
+   Color scheme: Blue & White
+   ========================================================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7fb;
+    color: #1a2b42;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    color: #1565c0;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #0d47a1;
+}
+
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+
+.navbar {
+    background: linear-gradient(135deg, #1565c0, #1976d2);
+    color: white;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    height: 64px;
+}
+
+.nav-logo {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.nav-logo:hover {
+    color: #e3f2fd;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #e3f2fd;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+.btn-nav {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-nav-primary {
+    background-color: white;
+    color: #1565c0 !important;
+    font-weight: 600;
+}
+
+.btn-nav-primary:hover {
+    background-color: #e3f2fd;
+}
+
+.btn-nav-logout {
+    background-color: rgba(244, 67, 54, 0.8) !important;
+    color: white !important;
+}
+
+.btn-nav-logout:hover {
+    background-color: #d32f2f !important;
+}
+
+.admin-navbar {
+    background: linear-gradient(135deg, #0d47a1, #1565c0);
+}
+
+/* ==========================================================================
+   Flash Messages
+   ========================================================================== */
+
+.flash-container {
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flash-message {
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.flash-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.flash-error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ffcdd2;
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+
+.hero {
+    background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+    color: white;
+    padding: 80px 24px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    margin-bottom: 32px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn-primary {
+    display: inline-block;
+    background-color: #1565c0;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0d47a1;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: white;
+    color: #1565c0;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 2px solid #1565c0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+.btn-full {
+    width: 100%;
+    text-align: center;
+}
+
+.btn-card {
+    display: inline-block;
+    background-color: #1565c0;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-card:hover {
+    background-color: #0d47a1;
+    color: white;
+}
+
+.btn-danger-sm {
+    display: inline-block;
+    background-color: #e53935;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-danger-sm:hover {
+    background-color: #c62828;
+    color: white;
+}
+
+.link-primary {
+    color: #1565c0;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.link-primary:hover {
+    color: #0d47a1;
+}
+
+/* ==========================================================================
+   Stats Section
+   ========================================================================== */
+
+.stats-section {
+    padding: 40px 24px;
+}
+
+.stats-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.stats-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 0 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e3f2fd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(21, 101, 192, 0.12);
+}
+
+.stat-card h2 {
+    font-size: 2.2rem;
+    color: #1565c0;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.stat-card p {
+    color: #607d8b;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Featured Jobs Section
+   ========================================================================== */
+
+.featured-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+}
+
+.section-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header h2 {
+    font-size: 1.6rem;
+    color: #0d47a1;
+    font-weight: 700;
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+/* ==========================================================================
+   Job Cards
+   ========================================================================== */
+
+.job-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e3f2fd;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(21, 101, 192, 0.12);
+}
+
+.job-card-header h3 {
+    font-size: 1.15rem;
+    color: #0d47a1;
+    margin-bottom: 4px;
+}
+
+.company-name {
+    color: #1565c0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.job-description {
+    color: #546e7a;
+    font-size: 0.9rem;
+    margin: 12px 0;
+    line-height: 1.5;
+}
+
+.job-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.tag {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.job-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.meta-item {
+    font-size: 0.85rem;
+    color: #607d8b;
+}
+
+/* ==========================================================================
+   Page Container (Jobs, Dashboard, Admin)
+   ========================================================================== */
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    flex: 1;
+}
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: #0d47a1;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #607d8b;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   Search Bar
+   ========================================================================== */
+
+.search-bar {
+    margin-bottom: 32px;
+}
+
+.search-bar form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.search-bar input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 16px;
+    border: 2px solid #bbdefb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #1565c0;
+}
+
+/* ==========================================================================
+   Job List (full listing)
+   ========================================================================== */
+
+.job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.job-card-list {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e3f2fd;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card-list:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(21, 101, 192, 0.1);
+}
+
+.job-card-main {
+    flex: 1;
+}
+
+.job-card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+}
+
+.job-card-title-row h3 {
+    font-size: 1.2rem;
+    color: #0d47a1;
+}
+
+.job-card-actions {
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Form Pages (Login, Register, Add Job, Admin Login)
+   ========================================================================== */
+
+.form-page {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 48px 24px;
+}
+
+.form-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e3f2fd;
+}
+
+.admin-form-card {
+    border-top: 4px solid #1565c0;
+}
+
+.form-card h1 {
+    font-size: 1.8rem;
+    color: #0d47a1;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.form-subtitle {
+    color: #607d8b;
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #37474f;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #bbdefb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1565c0;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 24px;
+    color: #607d8b;
+    font-size: 0.9rem;
+}
+
+.form-footer a {
+    color: #1565c0;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+.table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e3f2fd;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead {
+    background-color: #1565c0;
+}
+
+.data-table th {
+    color: white;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.data-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e3f2fd;
+    font-size: 0.9rem;
+    color: #37474f;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f5f9ff;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==========================================================================
+   Status Badges
+   ========================================================================== */
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-applied {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.status-shortlisted {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.status-selected {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.status-rejected {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* ==========================================================================
+   Status Form (Admin)
+   ========================================================================== */
+
+.status-form select {
+    padding: 6px 12px;
+    border: 2px solid #bbdefb;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #37474f;
+    background-color: white;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.status-form select:hover {
+    border-color: #1565c0;
+}
+
+/* ==========================================================================
+   Admin Actions Bar
+   ========================================================================== */
+
+.admin-actions-bar {
+    margin-bottom: 24px;
+    padding: 0 24px;
+}
+
+/* ==========================================================================
+   Empty State
+   ========================================================================== */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e3f2fd;
+}
+
+.empty-state h3 {
+    font-size: 1.3rem;
+    color: #0d47a1;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: #607d8b;
+    font-size: 0.95rem;
+}
+
+.empty-state a {
+    color: #1565c0;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Profile Section
+   ========================================================================== */
+
+.profile-section {
+    margin-top: 40px;
+}
+
+.profile-section h2 {
+    font-size: 1.4rem;
+    color: #0d47a1;
+    margin-bottom: 16px;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e3f2fd;
+}
+
+.profile-card p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #37474f;
+}
+
+.profile-card strong {
+    color: #0d47a1;
+    display: inline-block;
+    min-width: 100px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+    background-color: #0d47a1;
+    color: #e3f2fd;
+    text-align: center;
+    padding: 24px;
+    margin-top: auto;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 900px) {
+    .job-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    .job-card-list {
+        flex-direction: column;
+    }
+
+    .job-card-actions {
+        width: 100%;
+    }
+
+    .job-card-actions .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .data-table {
+        font-size: 0.8rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    .job-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 48px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+
+    .form-card {
+        padding: 28px 20px;
+    }
+
+    .search-bar form {
+        flex-direction: column;
+    }
+
+    .search-bar input[type="text"] {
+        width: 100%;
+    }
+}
